@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<div class="container">
+    <div class="login-content">
+        <div class="row">
+            <div class="col login-content-form">
+                <div class="logo">
+                    <img src="{{url_for('static', filename='imgs/LOGO.svg')}}">
+                </div>
+              <form class="form-signin text-center border border-light p-5" method="POST" action="/register/comapny">
+                {{ form.hidden_tag() }}
+                  <fieldset class="form-group">
+                      <div class="form-group mb-2">
+                          {% if form.company_name.errors %}
+                            {{ form.company_name(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.company_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form.company_name(class="form-control form-control-lg", placeholder="Nazwa firmy") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                          {% if form.company_number.errors %}
+                            {{ form.company_number(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.company_number.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form.company_number(class="form-control form-control-lg", placeholder="Numer NIP") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                          {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form.email(class="form-control form-control-lg", placeholder="Email") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                          {% if form.password.errors %}
+                            {{ form.password(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form.password(class="form-control form-control-lg", placeholder="Hasło") }}
+                          {% endif %}
+                      </div>
+                      <div class="form-group mb-2">
+                          {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.confirm_password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                            {{ form.confirm_password(class="form-control form-control-lg", placeholder="Powtórz hasło") }}
+                          {% endif %}
+                      </div>
+                  </fieldset>
+                  <div class="form-group mb-2">
+                      <button class="btn btn-lg btn-dark btn-block" type="submit">Zarejestruj się</button>
+                  </div>
+              </form>
+                <!--<div class="mb-3">-->
+                    <!--<input type="text" placeholder="Nazwa firmy" class="form-control" name="company_name" id="company_name">-->
+                <!--</div>-->
+                <!--<div class="mb-3">-->
+                    <!--<input type="text" placeholder="Numer NIP" class="form-control" name="company_number" id="company_number">-->
+                <!--</div>-->
+                <!--<div class="mb-3">-->
+                    <!--<input type="email" placeholder="email" class="form-control" name="email" id="email">-->
+                <!--</div>-->
+                <!--<div class="mb-3">-->
+                    <!--<input type="password" placeholder="hasło" class="form-control" name="password" id="password">-->
+                <!--</div>-->
+                <!--<div class="mb-3">-->
+                    <!--<input type="password" placeholder="hasło" class="form-control" name="confirm_password" id="Confirm_Password">-->
+                <!--</div>-->
+                <!--<button class="btn btn-lg btn-dark btn-block" type="submit">Zarejestruj się</button>-->
+              <!--</form>-->
+            </div>
+            <div class="col login-content-info">
+                <div>
+                    Jeśli nie masz konta <a href="{{url_for('users.register')}}">zarejestruj się</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="push"></div>
+{% endblock %}

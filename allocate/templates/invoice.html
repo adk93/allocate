@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<div class="container">
+    <section class="invoice-stamps">
+        <div class="row">
+            <div class="col">
+                Widok faktury<br>
+                {{invoice.display_name}}
+                <img src="{{ url_for('main.upload', filename=invoice.thumbnail) }}" width="100%">
+            </div>
+            <div class="col">
+                <div class="bdr">
+                    <table class="table table-light table-hover">
+                        <thead>
+                            <tr class="table-dark">
+                                <th>Pieczątka</th>
+                                <th>Wartość (netto PLN)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        {% for stamp in invoice.stamps %}
+                        <tr>
+                            <td>{{stamp.stamp.text}}</td>
+                            <td>{{stamp.stamp_value}}</td>
+                            <td><a href="/invoicestamp/delete/{{stamp.id}}"><button class="btn btn-dark">-</button></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div>
+                    <form class="row g-3" method="POST" action="/invoicestamp/add/invoice/{{invoice.id}}">
+                        <div class="col-auto">
+                            <button class="btn btn-dark">+</button>
+                        </div>
+                        <div class="col-auto w-50">
+                            <select class="form-control" name="stamp_text" id="stamp_text">
+                                {% for s in stamps %}
+                                    <option value="{{s.id}}">{{s.text}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" placeholder="wartość" type="number" step="0.01" name="stamp_value" id="stamp_value">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="push"></div>
+</div>
+
+
+
+{% endblock %}

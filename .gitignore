@@ -1,0 +1,3 @@
+allocate/env
+allocate/uploads/*
+allocate/database.db

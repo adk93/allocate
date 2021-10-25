@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<div class="container">
+    <section>
+        <div class="profile-info-container">
+            <div class="row">
+                <div class="col">
+                    <img class='profile-picture' src="{{ url_for('static', filename='logos/'+current_user.company.logo_filename) }}" width="200px">
+                </div>
+                <div class="col-8 align-self-end">
+                    <span class="user-email">{{current_user.company.company_name}}</span>
+                </div>
+            </div>
+            <div class="company-profile-data">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    {% with is_disabled = False if current_user.role.name in [user_roles.ADMIN, user_roles.SUPER_ADMIN] else True %}
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <div class="form-group mb-4">
+                            {{ form.company_name.label(class="form-control-label") }}
+                              {% if form.company_name.errors %}
+                                {{ form.company_name(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.company_name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form.company_name(class="form-control form-control-lg", placeholder="Nazwa firmy", disabled=is_disabled) }}
+                              {% endif %}
+                        </div>
+                          <div class="form-group mb-4">
+                              {{ form.company_number.label(class="form-control-label") }}
+                              {% if form.company_number.errors %}
+                                {{ form.company_number(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.company_number.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form.company_number(class="form-control form-control-lg", placeholder="Numer NIP", disabled=is_disabled) }}
+                              {% endif %}
+                          </div>
+                          <div class="form-group mb-4">
+                              {{ form.logo.label(class="form-control-label") }}
+                              {% if form.logo.errors %}
+                                {{ form.logo(class="form-control-file form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.logo.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                              {% else %}
+                                {{ form.logo(class="form-control form-control-lg", placeholder="Logo", disabled=is_disabled) }}
+                              {% endif %}
+                          </div>
+                    </fieldset>
+                    {% endwith %}
+                    <div class="form-group mb-4">
+                        <button class="btn btn-blue form-control">Zapisz zmiany</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% if current_user.role.name == user_roles.ADMIN or current_user.role.name == user_roles.SUPER_ADMIN %}
+        <section class="company-user-list">
+            <div class="bdr">
+                <table class="table table-light table-hover">
+                    <thead>
+                        <tr class="table-dark">
+                            <th>Email użytkownika</th>
+                            <th>Rola</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in current_user.company.users %}
+                            <tr>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.role.name }}</td>
+                                <td><a href="/company/remove/{{ user.id }}"><i class="far fa-trash-alt"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Dodaj adres email nowego użytkownika">
+                    <button class="btn btn-blue" onclick="addUser()">Dodaj użytkownika</button>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+</div>
+<div class="push"></div>
+
+<script src="{{url_for('static', filename='js/user-company-profile.js')}}"></script>
+{% endblock %}

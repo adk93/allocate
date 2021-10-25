@@ -1,0 +1,38 @@
+{% extends 'sidebar.html' %}
+
+{% block head %}
+
+    <div class="main-wrapper">
+        <div class="container">
+            <section id="load-files">
+                <div class="load-files-title">
+                    <h1>WCZYTAJ PLIKI</h1>
+                </div>
+                <div class="input-mode">
+                    <div class="row input-types">
+                        <div class="col">
+                            <div id="load-from-file"><button class="btn btn-green">Wczytaj z pliku</button></div>
+                        </div>
+                        <div class="col">
+                            <div id="load-from-gdrive"><button class="btn btn-green">Wczytaj z dysku google</button></div>
+                        </div>
+                    </div>
+                    <div class="input-type">
+                        <div>
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                {{ form.csfr }}
+                                <div class="mb-3">
+                                    <label for="formFileMultiple" class="form-label">Wczytaj pliki z lokalnego dysku</label>
+                                    <input class="form-control" type="file" name="formFileMultiple" id="formFileMultiple" accept=".pdf,.jpg,.png" multiple />
+
+                                </div>
+                                <button type="submit" class="btn btn-dark">Wczytaj</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        </div>
+    </div>
+<script src="{{url_for('static', filename='js/invoices_import.js')}}"></script>
+{% endblock %}

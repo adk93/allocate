@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<div class="container">
+    <section class="register-choice-section">
+        <div class="row register-choices">
+            <div class="col register-choice register-choice-company register-choice-chosen">Zarejestruj konto firmy</div>
+            <div class="col register-choice register-choice-user">Zarejestruj konto użytkownika</div>
+        </div>
+        <div class="register-choice-info">
+            <div class="register-choice-company-info">
+                Zarejestruj firmę już dziś<br>
+                <a href="{{url_for('users.register_company')}}"><button class="btn btn-blue">Zarejestruj firmę</button></a>
+            </div>
+            <div class="register-choice-user-info">
+                Zarejestruj użytkownika już dziś<br>
+                <a href="{{url_for('users.register_user')}}"><button class="btn btn-blue">Zarejestruj użytkownika</button></a>
+            </div>
+        </div>
+
+    </section>
+</div>
+<div class="push"></div>
+<script src="{{url_for('static', filename='js/register.js')}}"></script>
+{% endblock %}

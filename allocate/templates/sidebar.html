@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+
+{% block sidebar %}
+
+<div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
+    <ul class="nav flex-column text-white w-100">
+        <a href="#" class="nav-link h5 text-white my-2">
+            <i class="fas fa-stamp"></i> Pieczątki
+        </a>
+        <li href="#" class="nav-item">
+            <a class="nav-link" href="{{ url_for ('stamps.stamps_list') }}"><span class="mx-2"><i class="fas fa-list"></i> Lista</span></a>
+        </li>
+        <li href="#" class="nav-item">
+            <a class="nav-link" href="{{ url_for('stamps.import_stamps') }}"><span class="mx-2"><i class="fas fa-file-upload"></i> Import</span></a>
+        </li>
+        <hr style="color:white;">
+        <a href="#" class="nav-link h5 text-white my-2">
+            <i class="fas fa-file-invoice"></i> Faktury
+        </a>
+        <li href="#" class="nav-item">
+            <a class="nav-link" href="{{ url_for('invoices.invoices_list') }}"><span class="mx-2"><i class="fas fa-list"></i> Lista</span></a>
+        </li>
+        <li href="#" class="nav-item">
+            <a class="nav-link" href="{{ url_for ('invoices.invoices_import') }}"><span class="mx-2"><i class="fas fa-file-upload"></i> Import</span></a>
+        </li>
+        <hr style="color:white;">
+    </ul>
+</div>
+
+{% endblock %}
+
