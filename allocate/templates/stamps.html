@@ -1,22 +1,25 @@
-{% extends 'sidebar.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
 
+<main>
+    <section class="stamps-form">
 
-    <div class="main-wrapper">
-        <div class="container">
-            <section class="user-stamps">
-                <div class="user-stamps-header">
-                    <div class="row">
-                        <div class="col">
-                            TWOJE PIECZĄTKI
+                    <form method="POST" action="/stamps/add">
+                        <div>
+                            <input class="form-control" type="text" placeholder="Dodaj treść pieczątki" name="stamp_text" id="stamp_text">
                         </div>
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="szukaj pieczątki">
+                        <div>
+                            <button type="submit" class="btn btn-dark">Prześlij</button>
                         </div>
-                    </div>
-                </div>
-                <div class="user-stamps-body">
+                    </form>
+    </section>
+    <section class="user-stamps-header">
+        <div><h1>Twoje pieczątki</h1></div>
+        <div><input type="text" class="form-control" placeholder="szukaj pieczątki"></div>
+        <div><a href="{{ url_for('stamps.import_stamps') }}" class="btn btn__primary">Importuj pieczątki z pliku</a></div>
+    </section>
+    <section class="user-stamps-body">
                     {% if stamps: %}
                     <div class="bdr">
                         <table class="table table-light table-hover">
@@ -39,26 +42,8 @@
                     {% else %}
                         <h2>Stwórz swoją pierwszą pieczątkę!</h2>
                     {% endif %}
-                </div>
-                <div class="stamps-form">
-                    <form class="row g-3" method="POST" action="/stamps/add">
-                        <div class="col-10">
-                            <input class="form-control" type="text" placeholder="Dodaj treść pieczątki" name="stamp_text" id="stamp_text">
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-dark mb-3">Prześlij</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-            <div class="push"></div>
-        </div>
-
-    </div>
-
-
-
-
+    </section>
+</main>
 
 <script src="{{url_for('static', filename='js/stamps.js')}}"></script>
 

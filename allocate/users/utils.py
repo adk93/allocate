@@ -5,9 +5,10 @@ import secrets
 # Third party imports
 from flask import url_for, current_app
 from PIL import Image
+from flask_mail import Message
 
 # Local application imports
-
+from allocate import mail
 
 def save_picture(form_picture, type: str):
     folder = 'avatars' if type == "user" else 'logos'
@@ -22,3 +23,15 @@ def save_picture(form_picture, type: str):
     i.save(picture_path)
 
     return picture_fn
+
+def send_reset_mail(user):
+    token = user.get_reset_token()
+    msg = Message("Password Reset Request",
+                  sender="noreply@stamper.com",
+                  recipients=[user.email])
+    msg.body = f'''W celu zresetowania hasła, kliknij w poniższy link
+    {url_for('users.reset_token', token=token, _external=True)}
+
+    Jeśli nie wnioskowałeś o reset hasła zignoruj tę wiadomość. Żadne zmiany nie zostaną wprowadozne'''
+
+    mail.send(msg)

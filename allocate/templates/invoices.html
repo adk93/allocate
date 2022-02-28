@@ -1,12 +1,10 @@
-{% extends 'sidebar.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
 
-<div class="main-wrapper">
-    <div class="container">
-        <section>
-            <div class="row g-3">
-                <div class="col input-group">
+<main>
+        <section class="stamp-choice section-invoice">
+                <div class="input-group">
                     <span class="input-group-text" id="chosenStampDesc">Dodaj pieczątkę dla zaznaczonych</span>
                     <select id="chosenStamp" class="form-control" aria-describedby="chosenStampDesc">
                         {% for stamp in stamps %}
@@ -15,14 +13,11 @@
                     </select>
                     <button id="batch-add" type="button" class="btn btn-dark">Nadaj pieczątkę</button>
                 </div>
-            </div>
         </section>
-        <section>
-            <div>
-                <div class="row g-3">
-                    <div class="col-auto">
+        <section class="action-buttons section-invoice">
+                    <div>
                         <div class="dropdown">
-                            <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuAction" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn__blue dropdown-toggle" type="button" id="dropdownMenuAction" data-bs-toggle="dropdown" aria-expanded="false">
                                 Akcja
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuAction">
@@ -30,31 +25,26 @@
                                 <li><a class="dropdown-item" onclick="toggleChecks(false)">Odznacz wszystko</a></li>
                             </ul>
                         </div>
-                        <!--<select class="form-select">-->
-                            <!--<option disabled selected hidden>Akcja</option>-->
-                            <!--<option><button class="btn btn-blue" onclick="toggleChecks(true)">Zaznacz wszystko</button></option>-->
-                            <!--<option><button class="btn btn-blue" onclick="toggleChecks(false)">Odznacz wszystko</button></option>-->
-                        <!--</select>-->
-                        <!--<button class="btn btn-blue" onclick="toggleChecks(true)">Zaznacz wszystko</button>-->
                     </div>
-                    <!--<div class="col-auto">-->
-                        <!--<button class="btn btn-blue" onclick="toggleChecks(false)">Odznacz wszystko</button>-->
-                    <!--</div>-->
-                    <div class="col-auto">
-                        <button class="btn btn-blue" onclick="batchPrintStamps()">Wygeneruj pieczątki dla zaznaczonych</button>
+                    <div>
+                        <button class="btn btn__blue" onclick="batchPrintStamps()">Wygeneruj pieczątki dla zaznaczonych</button>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-blue" onclick="batchDeleteInvoices()">Usuń zaznaczone</button>
+                    <div>
+                        <button class="btn btn__blue" onclick="batchDeleteInvoices()">Usuń zaznaczone</button>
                     </div>
-                </div>
-            </div>
+                    <div>
+                        <a href="{{ url_for('invoices.invoices_import') }}" class="btn btn__primary">Importuj faktury</a>
+                    </div>
         </section>
+</main>
+
         {% if invoices is defined: %}
-        <section>
+        <section class="section-invoice invoice-table">
+            <div>
             <div class="filter-table">
                 <input type="text" class="form-control" placeholder="szukaj faktury">
             </div>
-            <div class="bdr">
+            <div class="bdr table-responsive">
                 <table class="table table-light table-hover">
                     <thead>
                         <tr class="table-dark">
@@ -67,26 +57,21 @@
                     <tbody>
                         {% for i in invoices: %}
                         <tr>
-                            <td><input data-invoiceid="{{i.id}}" class="form-check-input invoice-add-stamp" type="checkbox" value=""> {{i.display_name}} <div class="thumbnail"><img src="{{ url_for('main.upload',filename=i.thumbnail) }}" width=500px></div></td>
-                            <td>{% for stamp in i.stamps %}
+                            <td label="Tytuł faktury" align="left"><input data-invoiceid="{{i.id}}" class="form-check-input invoice-add-stamp" type="checkbox" value=""> {{i.display_name}} <div class="thumbnail"><img src="{{ url_for('main.upload',filename=i.thumbnail) }}" width=500px></div></td>
+                            <td label="Pieczątka">{% for stamp in i.stamps %}
                                 {{stamp.stamp.text}},
                                 {% endfor %}
                             </td>
-                            <td><a href="/invoice/{{i.id}}"><i class="far fa-edit"></i></a></td>
-                            <td><a href="/invoice/delete/{{i.id}}"><i class="far fa-trash-alt"></i></a></td>
+                            <td label="Edytuj"><a href="/invoice/{{i.id}}"><i class="far fa-edit"></i></a></td>
+                            <td label="Usuń"><a href="/invoice/delete/{{i.id}}"><i class="far fa-trash-alt"></i></a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+            </div>
         </section>
         {% endif %}
-        <div class="push"></div>
-    </div>
-</div>
-
-
-
 
 <script src="{{url_for('static', filename='js/dashboard.js')}}"></script>
 

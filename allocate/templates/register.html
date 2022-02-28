@@ -2,25 +2,32 @@
 
 {% block head %}
 
-<div class="container">
+<main>
     <section class="register-choice-section">
-        <div class="row register-choices">
-            <div class="col register-choice register-choice-company register-choice-chosen">Zarejestruj konto firmy</div>
-            <div class="col register-choice register-choice-user">Zarejestruj konto użytkownika</div>
-        </div>
-        <div class="register-choice-info">
-            <div class="register-choice-company-info">
-                Zarejestruj firmę już dziś<br>
-                <a href="{{url_for('users.register_company')}}"><button class="btn btn-blue">Zarejestruj firmę</button></a>
+        <header class="product-showcase__intro">
+            <h2>Zarejestruj się!</h2>
+        </header>
+        <div class="functions product-showcase__body">
+            <div class="function">
+                <h5 class="function-title">Zarejestruj firmę</h5>
+                <img src="">
+                <div class="function-content">
+                    <p>Załóż konto dla firmy</p>
+                    <a href="{{url_for('users.register_company')}}"><button class="btn btn__primary">Zarejestruj firmę</button></a>
+                </div>
             </div>
-            <div class="register-choice-user-info">
-                Zarejestruj użytkownika już dziś<br>
-                <a href="{{url_for('users.register_user')}}"><button class="btn btn-blue">Zarejestruj użytkownika</button></a>
+            <div class="function">
+                <h5 class="function-title">Zarejestruj użytkownika</h5>
+                <img src="">
+                <div class="function-content">
+                    <p>Twoja firma ma już konto? Zarejestruj się w serwisie i dołącz do organizacji</p>
+                    <a href="{{url_for('users.register_user')}}"><button class="btn btn__primary">Zarejestruj użytkownika</button></a>
+                </div>
             </div>
         </div>
 
     </section>
-</div>
-<div class="push"></div>
+</main>
+
 <script src="{{url_for('static', filename='js/register.js')}}"></script>
 {% endblock %}

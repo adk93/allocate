@@ -1,123 +1,244 @@
 
 /* General */
 
-html, body {
-  height: 100%;
-  margin: 0;
+:root {
+    --clr-text: black;
+    --clr-primary: #212529;
+    --clr-green: #326647;
+    --clr-red: #990033;
+    --clr-blue: #333366;
+    --clr-background: #c5c5c5;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+h2,
+h3 {
+    line-height: 0.8;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+p {
+    margin-bottom: 0.85rem;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    border: none;
+}
+
+html {
+    box-sizing: border-box;
+
 }
 
 body {
-    background-image: url("/static/imgs/stamp-rotated.svg");
-    background-size: 100px 100px;
-    background-color: #c5c5c5;
-    background-repeat: repeat;
-}
-
-section, div.container {
-    font-size: 11px;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 85%;
-  }
+    margin: 0;
+    text-align: center;
 }
 
 section {
-    margin: 30px 0px;
+    padding: 3em 1em;
+
 }
 
 section:first-of-type {
-    margin-top: 90px;
+    margin-top: 3rem;
+
 }
 
-.footer, .push {
-    height: 50px;
+/* Homepage */
+
+.intro {
+    padding: 30vh 1em;
+    background-image: url(../imgs/hero.jpg);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    background-size: cover;
+    color: var(--clr-blue);
+
 }
 
-button {
-    font-weight: bold !important;
+h2.section-title {
+    width: 70%;
+    margin: auto;
+    padding: 0.8em !important;
+    line-height: 1.1em;
 }
 
-.btn-green {
-    background: #326647;
+.intro h2 {
+    background-color: rgba(255,255,255,0.9);
+    padding: 5vh 0;
+    border-radius: 0.25em;
+}
+
+.about-us {
+    background: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
     color: white;
 }
 
-.btn-blue {
-    background: #333366;
+.about-us__intro, .create-account__intro,
+ .product-showcase__intro {
+    padding: 3em 1em 1.5em;
+}
+
+.about-us__body, .create-account__body,
+ .product-showcase__body {
+    padding: 1.5em 1em 3em;
+}
+
+.section-title-small {
+
+}
+
+.btn {
+    padding: .75em 2.5em;
     color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: .5em 0;
+    border-radius: 0.25em;
 }
 
-.btn-red {
-    background: #990033;
-    color: white;
+
+.btn__primary {
+    background-color: var(--clr-green);
 }
 
-.container {
-    min-height: 100%;
-    margin-bottom: -50px;
+.btn__blue {
+    background-color: var(--clr-blue);
 }
 
-.fa-trash-alt{
-    color: #990033;
-}
-
-.fa-edit {
-    color: #333366;
-}
-
-.bdr {border-radius: 6px;overflow:hidden;}
-
-.logo {
-    text-align: center;
-}
-
-table {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-/* DASHBOARD VIEW */
-
-.input-types {
-    border-bottom: 2px dashed #212529;
-}
-
-.input-types button {
-    width: 100%;
+.functions {
+    display: flex;
+    flex-direction: column;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding-top: 2em;
+    justify-content: space-evenly;
 
 }
-#load-files {
-    text-align: center;
-    margin: 50px 0px;
-    margin-top: 90px;
-    background-color: #f8f9fa;
-    padding: 20px 20px;
-    border-radius: 25px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+.function {
+    padding: 1em;
+    border-radius: 0.35em;
+    overflow: hidden;
+    box-shadow: 0 0 1em rgba(0,0,0,0.1);
 }
 
-#load-files div {
-    margin: 10px 0px;
+.function-content {
+    padding: 1.5em;
 }
 
-label {
-    padding: 0.5em 0em;
+.function-title {
+    color: var(--clr-blue);
+    font-size: 2.5rem;
+    margin-bottom: 0.5em;
 }
 
-#local-input-form button {
-    width:100%;
+.function:last-of-type {
+    margin-bottom: 2em;
 }
 
-.load-files-title {
-    margin: 20px 0px !important;
+@media only screen and (min-width: 750px) {
+    section {
+        padding: 6em 1em;
+
+    }
+
+    .about-us {
+        flex-direction: row;
+    }
+
+    .about-us__intro,
+    .about-us__body {
+        flex: 0 1 50%;
+        padding: 4em 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3em 1em;
+    }
+
+    .about-us__intro {
+        text-align: right;
+    }
+
+    .about-us__intro > * {
+        max-width: 25rem;
+        margin-left: auto;
+    }
+
+    .about-us__body {
+        text-align: left;
+    }
+
+    .about-us__intro > * {
+        max-width: 25rem;
+        margin-right: auto;
+    }
+
+    .functions {
+        flex-direction: row;
+         max-width: 1200px;
+         padding: 2em 5em;
+         justify-content: space-evenly;
+    }
+
+    .function {
+        margin: 0;
+        flex: 0 1 33%;
+
+    }
+
+    .function + .function {
+        margin-left: 1em;
+    }
 }
 
-.input-type {
-    width: 50%;
-    margin: auto !important;
-    padding: 5px 0px;
+/* Login form */
+
+.login-content-form {
+    padding: 0 20em;
 }
+
+.login-content-form form {
+    max-width: 800px;
+    margin: auto;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px;
+}
+/* Invoices form */
 
 .thumbnail {
     display:none;
@@ -131,176 +252,195 @@ label {
     margin: 5px 0px;
 }
 
-/* STAMPS VIEW */
+table {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
-.user-stamps {
-    text-align: center;
-    margin: 90px 0px;
+.bdr {border-radius: 6px;overflow:hidden;}
+
+.fa-trash-alt{
+    color: var(--clr-red);
+}
+
+.fa-edit {
+    color: var(--clr-blue);
+}
+
+.section-invoice {
+    padding: 0em 5em;
+}
+
+.stamp-choice {
+    padding-top: 6em;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-star;
+    flex-direction: column;
+    gap: 1em;
+}
+
+@media only screen and (min-width: 750px) {
+    .action-buttons {
+        flex-direction: row;
+    }
+
+}
+
+@media screen and (max-width: 750px) {
+    table thead {
+        display: none;
+    }
+
+    table td {
+        display: flex;
+    }
+
+    table td::before {
+        content: attr(label);
+        font-weight: bold;
+        width: 80px;
+        min-width: 80px;
+    }
+}
+
+#batch-add {
+    margin: 0;
+}
+
+.invoice-table {
+    margin-bottom: 5em;
+}
+
+.invoice-table tbody {
+    font-size: 0.8rem;
+}
+
+td {
+    padding: 0.5rem 1.5rem !important;
+}
+
+/* STAMPS */
+
+.stamps-form {
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+.stamps-form form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stamps-form form > div:first-of-type {
+    flex-grow: 2;
 }
 
 .user-stamps-header {
-    margin: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding: 0 5em;
 }
 
-.user-stamps-header .row .col:first-of-type {
-    text-align: left;
-    font-weight: bold;
-    padding-top: 0.5em;
+.user-stamps-header > div:nth-of-type(2) {
+    flex-grow: 2;
 }
 
-.stamps-form{
-    width:100%;
+.user-stamps-body {
+    padding: 0em 5em;
+    margin-bottom: 5em;
 }
 
-.stamps-form button {
-    width: 100%;
+@media only screen and (min-width: 750px) {
+    .stamps-form form {
+        flex-direction: row;
+    }
+
+    .user-stamps-header {
+        flex-direction: row;
+    }
 }
 
-.side-navbar {
-  width: 180px;
-  height: 100%;
-  position: fixed;
-  margin-left: -300px;
-  margin-top: -35px;
-  background-color: #212529;
-  transition: 0.5s;
+/* Profile view */
+
+.user-profile-data {
+    padding: 0 5em;
 }
 
-.nav-link:active,
-.nav-link:focus,
-.nav-link:hover {
-  background-color: #ffffff26;
+.profile-info-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    flex-direction: column;
 }
-
-.my-container {
-  transition: 0.4s;
-}
-
-.active-nav {
-  margin-left: 0;
-}
-
-.main-wrapper{
-    margin-left: 180px;
-}
-
-.mx-2 {
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-
-}
-
-/* LOGIN VIEW */
-.login-content {
-    width: 50%;
-    margin: 150px 0px;
-}
-
-.login-content-form {
-
-    background: #ffffff;
-    padding: 50px 5px;
-
-}
-
-.login-content-form button {
-    width: 100%;
-}
-
-.login-content-form input {
-    font-size: 12px;
-}
-
-.login-content-info {
-    background: #212529;
-    width: 100%;
-    color: white;
-    font-size: 11px;
-}
-
-.login-content-info div{
-    margin: 50px 10px;
-
-}
-
-/* INVOICE VIEW */
-.invoice-stamps {
-    margin: 90px 0px;
-}
-
-
-/* REGISTER VIEW */
-
-.register-choice-section {
-    background-color: #f8f9fa;
-    border-radius: 25px;
-    padding: 0px 10px 50px;
-}
-
-.register-choices {
-    height: 50px;
-    text-align: center;
-}
-
-.register-choice-chosen {
-    background-color: gray;
-}
-
-.register-choice-user-info {
-    display: none;
-}
-
-/* USER PROFILE VIEW */
-.profile-info-container{
-    width: 70%;
-    margin: auto;
-    background: white;
-    border-radius: 20px;
-    padding: 5% 10%;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-}
-
-.profile-picture-container {
-    position: relative;
-}
-
-.profile-picture-container:hover {
-    cursor: pointer;
-}
-
-.profile-picture-container:hover div {
-    visibility: visible;
-    opacity: 1;
-}
-
-.profile-picture {
-    border-radius: 50%;
-}
-
-.hover-profile-picture {
-    width: 100%
-    height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    background-color: rgba(255,255,255,0.7);
-    visibility: hidden;
-    opacity: 0;
-
-    transition: opacity .2s, visibility .2s;
-}
-
-.profile-picture-small{
-
-}
-
 
 .user-email {
-    font-size: 36px;
+    font-size: 1.2em;
     font-weight: bold;
+}
+
+@media only screen and (min-width: 750px) {
+    .user-profile-data {
+        padding: 0 15em;
+    }
+
+    .profile-info-header{
+        flex-direction: row;
+    }
+}
+
+.company-user-list {
+    padding: 5em 5em;
+}
+
+/* Invoice view */
+
+.main-invoice-view {
+    display: flex;
+    padding-left: 5em;
+    padding-right: 5em;
+    gap: 2em;
+}
+
+.invoice-view-header {
+    background-color: var(--clr-primary);
+    color: white;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    height: 2.5em;
+    display: flex;
+}
+
+.invoice-view-header p {
+    margin: auto;
+}
+
+.invoice-view-header p span {
+    font-weight: bold;
+}
+
+.invoice-view-picture {
+    border: 1px solid black;
+    transition: transform .2s;
+}
+
+.invoice-view-picture:hover {
+    transform: scale(1.5) translate(10%,10%);
+}
+
+.invoice-stamps-table form {
+    display: flex;
+    align-items: center;
+}
+
+/* no company */
+
+.no-company {
+    margin: auto;
 }

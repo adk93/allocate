@@ -4,7 +4,7 @@
 # Third party imports
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField, Form, IntegerField, FileField
-from wtforms.validators import InputRequired, Email, Length, NumberRange, EqualTo, ValidationError
+from wtforms.validators import InputRequired, Email, Length, NumberRange, EqualTo, ValidationError, DataRequired
 from flask_wtf.file import FileAllowed
 
 # Local application imports
@@ -72,3 +72,18 @@ class CompanyUpdateForm(FlaskForm):
         company = Company.query.filter_by(company_number=company_number.data).first()
         if company:
             raise ValidationError('That company is taken.')
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. You must register first.')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(), EqualTo('password')])

@@ -7,7 +7,7 @@ import enum
 from flask import current_app
 from flask_login import UserMixin
 from sqlalchemy import event
-
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 # Local application imports
 from allocate import db, login
@@ -73,6 +73,20 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"{self.id} - {self.company_id} - {self.email}"
+
+
+    def get_reset_token(self, expires_sec = 1800):
+        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id':self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
 
 
 class Role(db.Model):

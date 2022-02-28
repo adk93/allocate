@@ -1,31 +1,57 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<div class="container">
-    <section class="jumbotron">
-        <div class="p-5 mb-4 bg-light rounded-3">
-              <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">Dołącz do stampera</h1>
-                <p class="col-md-8 fs-4">Załóż konto w serwisie stamper, aby ułtawić sobie oraz zespołowi
-                dekretację kosztów w obrębie firmy. Nadaj wirtualną pieczątkę każdej fakturze</p>
-                  <a href="{{url_for('users.register')}}"><button class="btn btn-green btn-lg" type="button">Załóż konto</button></a>
-              </div>
+<main>
+    <section class="intro">
+        <h2 class="section-title">Inteligentne narzędzie do automatycznej alokacji kosztów</h2>
+    </section>
+    <section class="about-us">
+        <header class="about-us__intro">
+            <h3 class="section-title-small">
+                Zaprojektowane przez praktyków
+            </h3>
+        </header>
+        <div class="about-us__body">
+            Narzędzie Allocate zostało zaprojektowane przez praktyków
+            zajmujących się analizą i controllingiem. Dzięki blBLblB
+            bla bal balb abla balbalbal la labalba
         </div>
     </section>
-    <section class="content">
-        <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">Dekretacja kosztów w kilku prostych krokach</h1>
-                <p class="col-md-8 fs-4">1. Wczytaj pieczątki na podstawie planu kont
-                <br>
-                2. Importuj faktury do systemu
-                <br>
-                3. Nałóż masowo lub indywidualnie konkretne pieczątki
-                <br>
-                4. Wygeneruj dokumenty z pieczątkami</p>
+    <section class="create-account">
+        <header class="create-account__intro">
+            <h3 class="section-title">Załóż darmowe konto dla swojej firmy</h3>
+        </header>
+        <div class="create-account__body">
+            <a href="{{ url_for('users.register') }}" class="btn btn__primary">Załóż konto</a>
+        </div>
+    </section>
+    <section class="product-showcase">
+        <header class="product-showcase__intro">
+            <h3 class="section-title">Podstawowe funkcjonalności</h3>
+        </header>
+        <div class="functions product-showcase__body">
+            <div class="function">
+                <h4 class="function-title">Dekretacja</h4>
+                <img src="">
+                <div class="function-content">
+                    <p>salapslaplpadla</p>
+                </div>
+            </div>
+            <div class="function">
+                <h4 class="function-title">Dekretacja</h4>
+                <img src="">
+                <div class="function-content">
+                    <p>salapslaplpadla</p>
+                </div>
+            </div>
+            <div class="function">
+                <h4 class="function-title">Dekretacja</h4>
+                <img src="">
+                <div class="function-content">
+                    <p>salapslaplpadla</p>
+                </div>
             </div>
         </div>
     </section>
-    <div class="push"></div>
-</div>
+</main>
 {% endblock %}

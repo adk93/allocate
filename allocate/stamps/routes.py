@@ -14,6 +14,9 @@ stamps =  Blueprint('stamps', __name__)
 @stamps.route("/stamps",methods=["GET"])
 @login_required
 def stamps_list():
+    if current_user.company is None:
+        return render_template("no_company.html")
+
     company_id = current_user.company.id
     stamps = Stamp.query.filter_by(company_id=company_id).all()
 

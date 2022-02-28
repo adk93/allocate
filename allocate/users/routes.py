@@ -7,10 +7,10 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # Local application imports
-from allocate.users.forms import LoginForm, CompanyRegisterForm, UserRegisterForm, UserUpdateForm, CompanyUpdateForm
+from allocate.users.forms import LoginForm, CompanyRegisterForm, UserRegisterForm, UserUpdateForm, CompanyUpdateForm, RequestResetForm, ResetPasswordForm
 from allocate.models import User, Company, Role, UserRoles
 from allocate import db
-from allocate.users.utils import save_picture
+from allocate.users.utils import save_picture, send_reset_mail
 
 users =  Blueprint('users', __name__)
 
@@ -65,6 +65,37 @@ def register_user():
 
     return render_template("register_user.html", form=form)
 
+@users.route("/reset_password", methods=["GET", "POST"])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash("Na wskazany adres email wysłano instrukcje do resetu hasła", "info")
+        return redirect(url_for("users.login"))
+    return render_template("reset_request.html", form=form)
+
+
+@users.route("/reset_password/<token>", methods=["GET", "POST"])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash("Token wygasł lub jest niepoprawny", "warning")
+        return redirect(url_for("users.reset_request"))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash("Twoje hasło zostało zmienione")
+        return redirect(url_for('users.login'))
+    return redirect('reset_token.html', form=form)
+
+
 
 @users.route('/login',methods=['GET','POST'])
 def login():
@@ -78,7 +109,10 @@ def login():
 
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
-            return redirect(url_for('main.index'))
+            if user.company is None:
+                return redirect(url_for('main.index'))
+
+            return redirect(url_for('invoices.invoices_list'))
         else:
             flash('Logowanie nieudane. Spróbuj ponownie', 'danger')
 

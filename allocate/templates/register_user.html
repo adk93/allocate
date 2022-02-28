@@ -2,13 +2,12 @@
 
 {% block head %}
 
-<div class="container">
-    <div class="login-content">
-        <div class="row">
-            <div class="col login-content-form">
-                <div class="logo">
-                    <img src="{{url_for('static', filename='imgs/LOGO.svg')}}">
-                </div>
+<main>
+    <section class="login-form">
+        <div>
+            Allocate
+        </div>
+            <div class="login-content-form">
               <form class="form-signin text-center border border-light p-5" method="POST" action="/register/user">
                 {{ form.hidden_tag() }}
                   <fieldset class="form-group mb-2">
@@ -53,13 +52,7 @@
                       <button class="btn btn-lg btn-dark btn-block" type="submit">Zarejestruj się</button>
                   </div>
               </form>
-            <div class="col login-content-info">
-                <div>
-                    Jeśli nie masz konta <a href="{{url_for('users.register')}}">zarejestruj się</a>
-                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="push"></div>
+    </section>
+</main>
 {% endblock %}

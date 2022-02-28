@@ -20,6 +20,9 @@ invoices = Blueprint("invoices", __name__)
 @login_required
 def invoices_list():
 
+    if current_user.company is None:
+        return render_template("no_company.html")
+
     company_id = current_user.company.id
     invoices = Invoice.query.outerjoin(InvoiceStamps,
                                        Invoice.id == InvoiceStamps.invoice_id).filter(and_(Invoice.company_id == company_id,

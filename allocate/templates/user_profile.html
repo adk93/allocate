@@ -2,22 +2,19 @@
 
 {% block head %}
 
-<div class="container">
-    <section>
-        <div class="profile-info-container">
-            <div class="row">
-                <div class="col">
+<main>
+    <section class="profile-info-header">
+                <div>
                     <div class="profile-picture-container">
                         <img class='profile-picture' src="{{ url_for('static', filename='avatars/'+current_user.avatar_filename) }}" width="200px">
                     </div>
                 </div>
-                <div class="col-8 align-self-end">
+                <div>
                     <span class="user-email">{{current_user.email}}</span>
                 </div>
-            </div>
-            <div>
-                <div class="user-profile-data">
-                    <form method="POST" action="/user/profile" enctype="multipart/form-data">
+    </section>
+    <section class="user-profile-data">
+<form method="POST" action="/user/profile" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
                       <fieldset class="form-group">
                           <div class="form-group mb-4">
@@ -74,16 +71,10 @@
                           </div>
                       </fieldset>
                         <div class="form-group mb-4">
-                            <button type='submit' class="btn btn-blue form-control">Zapisz zmiany</button>
+                            <button type='submit' class="btn btn__blue form-control">Zapisz zmiany</button>
                         </div>
                     </form>
-
-                </div>
-
-            </div>
-        </div>
     </section>
+</main>
 
-</div>
-<div class="push"></div>
 {% endblock %}

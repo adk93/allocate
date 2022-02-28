@@ -2,13 +2,12 @@
 
 {% block head %}
 
-<div class="container">
-    <div class="login-content">
-        <div class="row">
-            <div class="col login-content-form">
-                <div class="logo">
-                    <img src="{{url_for('static', filename='imgs/LOGO.svg')}}">
-                </div>
+<main>
+    <section class="login-form">
+        <div>
+            Allocate
+        </div>
+            <div class="login-content-form">
               <form class="form-signin text-center border border-light p-5" method="POST" action="/register/comapny">
                 {{ form.hidden_tag() }}
                   <fieldset class="form-group">
@@ -77,31 +76,7 @@
                       <button class="btn btn-lg btn-dark btn-block" type="submit">Zarejestruj się</button>
                   </div>
               </form>
-                <!--<div class="mb-3">-->
-                    <!--<input type="text" placeholder="Nazwa firmy" class="form-control" name="company_name" id="company_name">-->
-                <!--</div>-->
-                <!--<div class="mb-3">-->
-                    <!--<input type="text" placeholder="Numer NIP" class="form-control" name="company_number" id="company_number">-->
-                <!--</div>-->
-                <!--<div class="mb-3">-->
-                    <!--<input type="email" placeholder="email" class="form-control" name="email" id="email">-->
-                <!--</div>-->
-                <!--<div class="mb-3">-->
-                    <!--<input type="password" placeholder="hasło" class="form-control" name="password" id="password">-->
-                <!--</div>-->
-                <!--<div class="mb-3">-->
-                    <!--<input type="password" placeholder="hasło" class="form-control" name="confirm_password" id="Confirm_Password">-->
-                <!--</div>-->
-                <!--<button class="btn btn-lg btn-dark btn-block" type="submit">Zarejestruj się</button>-->
-              <!--</form>-->
             </div>
-            <div class="col login-content-info">
-                <div>
-                    Jeśli nie masz konta <a href="{{url_for('users.register')}}">zarejestruj się</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="push"></div>
+    </section>
+</main>
 {% endblock %}

@@ -6,6 +6,7 @@ from flask_admin import Admin, AdminIndexView
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 
 # Local application imports
 from allocate.config import Config
@@ -23,6 +24,7 @@ db = SQLAlchemy()
 login = LoginManager()
 login.login_view = 'users.login'
 migrate = Migrate()
+mail = Mail()
 admin = Admin(index_view=MyAdminIndexView(), template_mode='bootstrap4')
 
 def create_app(config_class=Config):
@@ -33,6 +35,7 @@ def create_app(config_class=Config):
     login.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
     admin.init_app(app)
+    mail.init_app(app)
 
     with app.app_context():
         db.create_all()

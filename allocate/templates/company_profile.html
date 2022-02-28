@@ -2,18 +2,16 @@
 
 {% block head %}
 
-<div class="container">
-    <section>
-        <div class="profile-info-container">
-            <div class="row">
-                <div class="col">
+<main>
+    <section class="profile-info-header">
+                <div>
                     <img class='profile-picture' src="{{ url_for('static', filename='logos/'+current_user.company.logo_filename) }}" width="200px">
                 </div>
-                <div class="col-8 align-self-end">
+                <div>
                     <span class="user-email">{{current_user.company.company_name}}</span>
                 </div>
-            </div>
-            <div class="company-profile-data">
+    </section>
+    <section class="user-profile-data">
                 <form method="POST" action="" enctype="multipart/form-data">
                     {% with is_disabled = False if current_user.role.name in [user_roles.ADMIN, user_roles.SUPER_ADMIN] else True %}
                     {{ form.hidden_tag() }}
@@ -60,11 +58,9 @@
                     </fieldset>
                     {% endwith %}
                     <div class="form-group mb-4">
-                        <button class="btn btn-blue form-control">Zapisz zmiany</button>
+                        <button class="btn btn__blue form-control">Zapisz zmiany</button>
                     </div>
                 </form>
-            </div>
-        </div>
     </section>
     {% if current_user.role.name == user_roles.ADMIN or current_user.role.name == user_roles.SUPER_ADMIN %}
         <section class="company-user-list">
@@ -91,13 +87,12 @@
             <div>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Dodaj adres email nowego użytkownika">
-                    <button class="btn btn-blue" onclick="addUser()">Dodaj użytkownika</button>
+                    <button class="btn btn__blue" onclick="addUser()">Dodaj użytkownika</button>
                 </div>
             </div>
         </section>
     {% endif %}
-</div>
-<div class="push"></div>
+</main>
 
 <script src="{{url_for('static', filename='js/user-company-profile.js')}}"></script>
 {% endblock %}
