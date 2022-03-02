@@ -3,6 +3,7 @@
 # Third party imports
 from flask_admin.contrib.sqla import ModelView
 from flask import Blueprint
+from flask_login import current_user
 
 # Local application imports
 from allocate import admin, db
@@ -14,11 +15,10 @@ adminblueprint =  Blueprint('adminblueprint', __name__)
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        return True
-        # if current_user.is_authenticated and current_user.role.name == 'Super Admin':
-        #     return True
-        # else:
-        #     return False
+        if current_user.is_authenticated and current_user.email == 'adrian.kaminski@kodilla.com':
+            return True
+        else:
+            return False
 
 
 
