@@ -3,7 +3,7 @@
 # Third Party imports
 from flask import Flask
 from flask_admin import Admin, AdminIndexView
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
@@ -13,11 +13,10 @@ from allocate.config import Config
 
 class MyAdminIndexView(AdminIndexView):
     def is_accessible(self):
-        return True
-        # if current_user.is_authenticated and current_user.role.name == 'Super Admin':
-        #     return True
-        # else:
-        #     return False
+        if current_user.is_authenticated and current_user.email == 'adrian.kaminski@kodilla.com':
+            return True
+        else:
+            return False
 
 
 db = SQLAlchemy()

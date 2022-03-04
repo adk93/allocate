@@ -2,3 +2,4 @@ allocate/env
 allocate/uploads/*
 !allocate/uploads/.gitkeep
 allocate/database.db
+.env
