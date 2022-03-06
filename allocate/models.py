@@ -98,21 +98,21 @@ class Role(db.Model):
     def __repr__(self):
         return f"{self.id} - {self.name} - {self.description}"
 
-@event.listens_for(Role.__table__, 'after_create')
-def create_roles(*args, **kwargs):
-    superadmin_role = Role(name=UserRoles.SUPER_ADMIN,
-                           description='Administrator serwisu')
-
-    admin_role = Role(name=UserRoles.ADMIN,
-                      description='Administrator firmy')
-
-    user_role = Role(name=UserRoles.USER,
-                     description='Użytkownik w firmie')
-
-    db.session.add(superadmin_role)
-    db.session.add(admin_role)
-    db.session.add(user_role)
-    db.session.commit()
+# @event.listens_for(Role.__table__, 'after_create')
+# def create_roles(*args, **kwargs):
+#     superadmin_role = Role(name=UserRoles.SUPER_ADMIN,
+#                            description='Administrator serwisu')
+#
+#     admin_role = Role(name=UserRoles.ADMIN,
+#                       description='Administrator firmy')
+#
+#     user_role = Role(name=UserRoles.USER,
+#                      description='Użytkownik w firmie')
+#
+#     db.session.add(superadmin_role)
+#     db.session.add(admin_role)
+#     db.session.add(user_role)
+#     db.session.commit()
 
 class InvoiceStamps(db.Model):
     id = db.Column(db.Integer, primary_key=True)
