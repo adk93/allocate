@@ -29,7 +29,7 @@ def register_company():
         db.session.add(new_company)
 
         company = Company.query.filter_by(company_number=form.company_number.data).first()
-        new_role = Role.query.filter_by(name=UserRoles.ADMIN).first()
+        new_role = Role.query.filter_by(name='Admin').first()
 
         hashed_password = generate_password_hash(form.password.data, method='sha256')
 
@@ -52,7 +52,7 @@ def register_user():
 
         hashed_password = generate_password_hash(form.password.data, method='sha256')
 
-        new_role = Role.query.filter_by(name=UserRoles.USER).first()
+        new_role = Role.query.filter_by(name='User').first()
 
         new_user = User(email=form.email.data,
                         password = hashed_password,
