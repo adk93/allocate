@@ -45,21 +45,21 @@ def create_app(config_class=Config):
     #     with app.app_context():
     #         db.create_all()
     #
-    # from allocate.invoices.routes import invoices
-    # from allocate.main.routes import main
-    # from allocate.stamps.routes import stamps
-    # from allocate.stampsInvoices.routes import stampsInvoices
-    # from allocate.users.routes import users
-    # from allocate.adminbp.routes import adminblueprint
-    #
-    # app.register_blueprint(main)
-    # app.register_blueprint(users)
-    # app.register_blueprint(invoices)
-    # app.register_blueprint(stamps)
-    # app.register_blueprint(stampsInvoices)
-    # app.register_blueprint(adminblueprint)
-    #
-    # return app
+    from allocate.invoices.routes import invoices
+    from allocate.main.routes import main
+    from allocate.stamps.routes import stamps
+    from allocate.stampsInvoices.routes import stampsInvoices
+    from allocate.users.routes import users
+    from allocate.adminbp.routes import adminblueprint
+
+    app.register_blueprint(main)
+    app.register_blueprint(users)
+    app.register_blueprint(invoices)
+    app.register_blueprint(stamps)
+    app.register_blueprint(stampsInvoices)
+    app.register_blueprint(adminblueprint)
+
+    return app
 
 
 
