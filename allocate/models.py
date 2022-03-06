@@ -91,7 +91,7 @@ class User(db.Model, UserMixin):
 
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Enum(UserRoles))
+    name = db.Column(db.String(10))
     description = db.Column(db.String(255))
     users = db.relationship("User", backref='role', lazy=True)
 
