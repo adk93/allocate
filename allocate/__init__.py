@@ -36,30 +36,30 @@ def create_app(config_class=Config):
     admin.init_app(app)
     mail.init_app(app)
 
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
 
-    @app.before_first_request
-    def create_tables():
-        from allocate.models import Company, User, Role, Stamp, Invoice, InvoiceStamps
-        with app.app_context():
-            db.create_all()
-
-    from allocate.invoices.routes import invoices
-    from allocate.main.routes import main
-    from allocate.stamps.routes import stamps
-    from allocate.stampsInvoices.routes import stampsInvoices
-    from allocate.users.routes import users
-    from allocate.adminbp.routes import adminblueprint
-
-    app.register_blueprint(main)
-    app.register_blueprint(users)
-    app.register_blueprint(invoices)
-    app.register_blueprint(stamps)
-    app.register_blueprint(stampsInvoices)
-    app.register_blueprint(adminblueprint)
-
-    return app
+    # @app.before_first_request
+    # def create_tables():
+    #     from allocate.models import Company, User, Role, Stamp, Invoice, InvoiceStamps
+    #     with app.app_context():
+    #         db.create_all()
+    #
+    # from allocate.invoices.routes import invoices
+    # from allocate.main.routes import main
+    # from allocate.stamps.routes import stamps
+    # from allocate.stampsInvoices.routes import stampsInvoices
+    # from allocate.users.routes import users
+    # from allocate.adminbp.routes import adminblueprint
+    #
+    # app.register_blueprint(main)
+    # app.register_blueprint(users)
+    # app.register_blueprint(invoices)
+    # app.register_blueprint(stamps)
+    # app.register_blueprint(stampsInvoices)
+    # app.register_blueprint(adminblueprint)
+    #
+    # return app
 
 
 
