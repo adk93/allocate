@@ -13,7 +13,7 @@
     </section>
     <section class="user-profile-data">
                 <form method="POST" action="" enctype="multipart/form-data">
-                    {% with is_disabled = False if current_user.role.name in [user_roles.ADMIN, user_roles.SUPER_ADMIN] else True %}
+                    {% with is_disabled = False if current_user.role.name in ['Admin', user_roles.SUPER_ADMIN] else True %}
                     {{ form.hidden_tag() }}
                     <fieldset class="form-group">
                         <div class="form-group mb-4">
@@ -62,7 +62,7 @@
                     </div>
                 </form>
     </section>
-    {% if current_user.role.name == user_roles.ADMIN or current_user.role.name == user_roles.SUPER_ADMIN %}
+    {% if current_user.role.name == 'Admin' or current_user.role.name == 'Super Admin' %}
         <section class="company-user-list">
             <div class="bdr">
                 <table class="table table-light table-hover">
