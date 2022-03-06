@@ -51,6 +51,7 @@ def create_app(config_class=Config):
     from allocate.stampsInvoices.routes import stampsInvoices
     from allocate.users.routes import users
     from allocate.adminbp.routes import adminblueprint
+    from .commands import create_tables
 
     app.register_blueprint(main)
     app.register_blueprint(users)
@@ -58,6 +59,8 @@ def create_app(config_class=Config):
     app.register_blueprint(stamps)
     app.register_blueprint(stampsInvoices)
     app.register_blueprint(adminblueprint)
+
+    app.cli.add_command(create_tables)
 
     return app
 
